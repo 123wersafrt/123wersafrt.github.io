@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AI 工具导航 · 按类别整理的常用 AI 工具直达入口</title>
+<meta name="description" content="按类别整理的常用 AI 工具导航：对话、编程、图像、视频、音频、写作、PPT、搜索、Agent、本地部署等，全部直达官网，并标注国内是否直连、是否免费、是否开源。">
+<meta name="keywords" content="AI工具,AI导航,AI工具大全,AI网站,人工智能工具,AI工具箱">
+<meta name="theme-color" content="#F2EBE0">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://123wersafrt.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AI 工具导航 · 按类别整理的常用 AI 工具直达入口">
+<meta property="og:description" content="不用再一个一个搜。按类别整理的 AI 工具导航，直达官网，标注国内可用性与付费模式。">
+<meta property="og:site_name" content="AI 工具导航">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23F2EBE0'/%3E%3Ctext x='16' y='22' font-size='16' text-anchor='middle' fill='%23B85C38' font-family='monospace'%3EAI%3C/text%3E%3C/svg%3E">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","name":"AI 工具导航","description":"按类别整理的常用 AI 工具导航，直达官网并标注国内可用性。","inLanguage":"zh-CN"}
+</script>
+<style>
+/* ============ tokens：奶油纸感（米白） ============ */
+:root{
+  --bg:#F2EBE0; --panel:#E2D9CB; --panel-2:#EAE2D7; --panel-3:#D5CABA;
+  --line:#DDD3C4; --line-2:#C9BDAB;
+  --fg:#292420; --fg-2:#7C7166; --fg-3:#9C9086;
+  --accent:#B85C38; --accent-soft:rgba(184,92,56,.10); --accent-line:rgba(184,92,56,.34);
+  --ok:#5E7048; --ok-soft:rgba(94,112,72,.10); --ok-line:rgba(94,112,72,.30);
+  --shadow:0 1px 2px rgba(88,66,44,.05), 0 10px 24px -18px rgba(88,66,44,.25);
+  --r:12px; --r-sm:8px;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"JetBrains Mono","Cascadia Code",monospace;
+  --maxw:1240px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg); color:var(--fg); font-family:var(--sans);
+  font-size:14px; line-height:1.6; -webkit-font-smoothing:antialiased;
+  padding-bottom:64px;
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+input{font:inherit}
+::selection{background:var(--accent-soft)}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* ============ header ============ */
+.top{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.top-in{display:flex;align-items:center;gap:18px;height:60px}
+.brand{display:flex;align-items:center;gap:9px;flex:0 0 auto}
+.brand-mark{width:26px;height:26px;border-radius:7px;background:var(--panel-3);border:1px solid var(--line-2);display:grid;place-items:center;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--accent);letter-spacing:.5px}
+.brand-t{font-size:15px;font-weight:600;letter-spacing:.2px}
+.brand-s{font-size:11px;color:var(--fg-3);border-left:1px solid var(--line-2);padding-left:9px;margin-left:2px;white-space:nowrap}
+@media(max-width:720px){.brand-s{display:none}}
+
+.search{position:relative;flex:1 1 auto;max-width:540px;margin-left:auto}
+.search input{
+  width:100%;height:38px;border-radius:10px;border:1px solid var(--line);background:var(--panel);
+  color:var(--fg);padding:0 84px 0 36px;outline:none;transition:border-color .16s,box-shadow .16s;
+}
+.search input::placeholder{color:var(--fg-3)}
+.search input:focus{border-color:var(--accent-line);box-shadow:0 0 0 3px var(--accent-soft)}
+.search svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--fg-3);pointer-events:none}
+.search .keys{position:absolute;right:8px;top:50%;transform:translateY(-50%);display:flex;gap:4px;align-items:center}
+kbd{font-family:var(--mono);font-size:10px;color:var(--fg-3);border:1px solid var(--line-2);border-bottom-width:2px;border-radius:5px;padding:1px 5px;background:var(--panel-2)}
+.search button.clear{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:24px;height:24px;border-radius:6px;color:var(--fg-3);display:none;place-items:center}
+.search button.clear:hover{background:var(--panel-3);color:var(--fg)}
+.search.has-val button.clear{display:grid}
+.search.has-val .keys{display:none}
+@media(max-width:720px){.search{max-width:none}.brand{order:0}.top-in{gap:12px}}
+
+/* ============ category bar ============ */
+.catbar{border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--bg) 80%,transparent)}
+.catbar-in{display:flex;gap:6px;overflow-x:auto;padding:10px 20px;scrollbar-width:none}
+.catbar-in::-webkit-scrollbar{display:none}
+.cat{white-space:nowrap;padding:6px 12px;border-radius:999px;border:1px solid var(--line);color:var(--fg-2);font-size:13px;transition:.15s;display:flex;gap:7px;align-items:center}
+.cat:hover{border-color:var(--line-2);color:var(--fg)}
+.cat .n{font-family:var(--mono);font-size:10.5px;color:var(--fg-3)}
+.cat[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent-line);color:var(--accent)}
+.cat[aria-pressed="true"] .n{color:var(--accent);opacity:.75}
+
+/* ============ toolbar ============ */
+.tools{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:22px 0 6px}
+.count{font-size:13px;color:var(--fg-2);margin-right:auto}
+.count b{color:var(--fg);font-weight:600;font-family:var(--mono);font-size:14px}
+.tgl{display:flex;align-items:center;gap:6px;padding:5px 11px;border-radius:999px;border:1px solid var(--line);color:var(--fg-2);font-size:12.5px;transition:.15s}
+.tgl:hover{border-color:var(--line-2)}
+.tgl[aria-pressed="true"]{border-color:var(--accent-line);background:var(--accent-soft);color:var(--accent)}
+.tgl .dot{width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.55}
+.selwrap{position:relative;display:flex;align-items:center}
+.selwrap svg{position:absolute;right:8px;pointer-events:none;color:var(--fg-3)}
+select{appearance:none;-webkit-appearance:none;padding:6px 26px 6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--fg-2);font-size:12.5px;outline:none;cursor:pointer}
+select:hover{border-color:var(--line-2)}
+
+/* ============ featured ============ */
+.featured{padding:20px 0 4px}
+.fsec-h{display:flex;align-items:baseline;gap:10px;margin:0 0 12px}
+.fsec-h h2{font-size:13px;font-weight:600;letter-spacing:.4px;margin:0;color:var(--fg)}
+.fsec-h span{font-size:12px;color:var(--fg-3)}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}
+
+/* ============ grid ============ */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(272px,1fr));gap:12px;padding:14px 0 8px}
+.catblock{padding:22px 0 0}
+.catblock > header{display:flex;align-items:baseline;gap:9px;padding-bottom:2px}
+.catblock > header h2{font-size:14px;font-weight:600;margin:0;letter-spacing:.3px}
+.catblock > header .n{font-family:var(--mono);font-size:11px;color:var(--fg-3)}
+
+/* ============ card ============ */
+.card{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:13px 14px;transition:border-color .16s,transform .16s,background .16s;display:flex;flex-direction:column;gap:9px;min-height:132px}
+.card:hover{border-color:var(--line-2);background:var(--panel-2);transform:translateY(-1px)}
+.card:focus-within{border-color:var(--accent-line);box-shadow:0 0 0 3px var(--accent-soft)}
+.card-link{position:absolute;inset:0;z-index:1;border-radius:var(--r)}
+.card-head{display:flex;gap:10px;align-items:flex-start}
+.logo{flex:0 0 auto;width:32px;height:32px;border-radius:8px;background:var(--panel-3);border:1px solid var(--line);display:grid;place-items:center;font-family:var(--mono);font-size:11.5px;font-weight:600;color:var(--fg-2);letter-spacing:.3px}
+.card:hover .logo{border-color:var(--line-2);color:var(--fg)}
+.card-title{min-width:0;flex:1 1 auto}
+.card-title h3{margin:0;font-size:14px;font-weight:600;line-height:1.35;display:flex;align-items:center;gap:5px;letter-spacing:.1px}
+.star{color:var(--accent);font-size:11px;opacity:.9}
+.domain{display:block;font-family:var(--mono);font-size:11px;color:var(--fg-3);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fav{position:relative;z-index:2;flex:0 0 auto;width:26px;height:26px;border-radius:7px;display:grid;place-items:center;color:var(--fg-3);font-size:14px;transition:.15s;margin:-2px -3px 0 0}
+.fav:hover{background:var(--panel-3);color:var(--fg)}
+.fav[aria-pressed="true"]{color:var(--accent)}
+.card-desc{margin:0;font-size:12.5px;line-height:1.58;color:var(--fg-2);flex:1 1 auto}
+.badges{display:flex;flex-wrap:wrap;gap:5px;position:relative;z-index:0}
+.badge{font-size:11px;padding:2px 7px;border-radius:5px;border:1px solid var(--line);color:var(--fg-3);white-space:nowrap;line-height:1.5}
+.badge.ok{color:var(--ok);border-color:var(--ok-line);background:var(--ok-soft)}
+.badge.free{color:var(--accent);border-color:var(--accent-line);background:var(--accent-soft)}
+
+/* ============ empty ============ */
+.empty{display:none;text-align:center;padding:80px 20px;color:var(--fg-3)}
+.empty.on{display:block}
+.empty .big{font-size:15px;color:var(--fg-2);margin-bottom:6px}
+
+/* ============ footer ============ */
+.foot{margin-top:56px;border-top:1px solid var(--line);padding:26px 0 0;color:var(--fg-3);font-size:12.5px;line-height:1.8}
+.foot .row{display:flex;flex-wrap:wrap;gap:6px 20px;justify-content:space-between}
+.foot a{color:var(--fg-2);border-bottom:1px solid var(--line-2)}
+.foot a:hover{color:var(--accent);border-color:var(--accent-line)}
+.foot .note{margin:14px 0 0;max-width:760px}
+
+.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,12px);background:var(--panel-3);border:1px solid var(--line-2);color:var(--fg);padding:8px 16px;border-radius:9px;font-size:12.5px;opacity:0;pointer-events:none;transition:.22s;z-index:99;box-shadow:var(--shadow)}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="./" title="回到全部工具">
+      <span class="brand-mark">AI</span>
+      <span class="brand-t">工具导航</span>
+      <span class="brand-s">直达官网 · 标注国内可用性</span>
+    </a>
+    <div class="search" id="searchWrap">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
+      <input id="q" type="search" placeholder="搜工具名、用途或域名，比如「抠图」「可灵」「翻墙」" autocomplete="off" spellcheck="false" aria-label="搜索 AI 工具">
+      <span class="keys"><kbd>Ctrl</kbd><kbd>K</kbd></span>
+      <button class="clear" id="clearQ" title="清空" aria-label="清空搜索">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav class="catbar" aria-label="工具分类">
+  <div class="catbar-in wrap" id="catbar"></div>
+</nav>
+
+<main class="wrap">
+  <div class="tools">
+    <span class="count" id="count"></span>
+    <button class="tgl" data-f="cn" aria-pressed="false"><span class="dot"></span>国内直连</button>
+    <button class="tgl" data-f="free" aria-pressed="false"><span class="dot"></span>可免费用</button>
+    <button class="tgl" data-f="open" aria-pressed="false"><span class="dot"></span>开源</button>
+    <button class="tgl" data-f="fav" aria-pressed="false">★ 我的收藏</button>
+    <span class="selwrap">
+      <select id="sort" aria-label="排序">
+        <option value="default">推荐优先</option>
+        <option value="name">按名称排序</option>
+      </select>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+    </span>
+  </div>
+
+  <section class="featured" id="featured">
+    <div class="fsec-h"><h2>新手先装这 8 个</h2><span>覆盖你最常遇到的场景，全都是打开即用</span></div>
+    <div class="fgrid" id="fgrid"></div>
+  </section>
+
+  <div id="results"></div>
+
+  <div class="empty" id="empty">
+    <div class="big">没找到匹配的工具</div>
+    <div>换个关键词，或者把上面的筛选条件放宽试试</div>
+  </div>
+
+  <footer class="foot">
+    <div class="row">
+      <span>共收录 <b id="total"></b> 个工具，按 <b id="totalCat"></b> 个类别整理 · 更新时间 <span id="updated"></span></span>
+      <span>域名均为各产品官方站；如遇失效欢迎<a href="mailto:hello@example.com?subject=AI%20%E5%B7%A5%E5%85%B7%E5%AF%BC%E8%88%AA%E9%93%BE%E6%8E%A5%E7%BA%A0%E9%94%99">反馈纠错</a></span>
+    </div>
+    <p class="note">
+      <strong style="color:var(--fg-2)">关于「国内直连」</strong>：标注为绿色的工具，在中国大陆网络环境下无需额外配置即可打开；
+      标注为黄色的工具需要自备网络环境，请遵守当地法律法规。
+      本站只做整理与跳转，不对第三方服务的内容、收费与数据安全负责；价格与免费额度变化频繁，以官网为准。
+    </p>
+  </footer>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<!-- =========================================================
+     工具数据：想加工具只要在这里加一行，不用动任何逻辑
+     site: 1 = 国内直连 / 0 = 需自备网络环境
+     price: free = 完全免费 / freemium = 有免费额度 / paid = 付费为主
+     open: true = 开源 · hot: true = 会出现在「新手先装这 8 个」候选池
+     ========================================================= -->
+<script type="application/json" id="tool-data">
+{
+"updated":"2026-09-24",
+"cats":[
+ {"k":"chat","n":"对话助手"},
+ {"k":"coding","n":"编程开发"},
+ {"k":"image","n":"图像生成"},
+ {"k":"image-edit","n":"图像编辑"},
+ {"k":"video","n":"视频生成"},
+ {"k":"human","n":"数字人口播"},
+ {"k":"audio","n":"音频音乐"},
+ {"k":"asr","n":"语音转写"},
+ {"k":"writing","n":"写作办公"},
+ {"k":"ppt","n":"演示文稿"},
+ {"k":"search","n":"搜索研究"},
+ {"k":"knowledge","n":"知识笔记"},
+ {"k":"agent","n":"Agent 自动化"},
+ {"k":"platform","n":"模型与 API"},
+ {"k":"local","n":"本地部署"},
+ {"k":"design","n":"设计 UI"},
+ {"k":"data","n":"表格数据"},
+ {"k":"translate","n":"翻译语言"}
+],
+"tools":[
+{"name":"ChatGPT","url":"https://chatgpt.com","cat":"chat","desc":"综合能力最全的通用助手，写作、分析、画图、写代码一个入口搞定","site":0,"price":"freemium","hot":true},
+{"name":"Claude","url":"https://claude.ai","cat":"chat","desc":"长文写作与代码理解见长，语气稳，适合改稿和读大文件","site":0,"price":"freemium","hot":true},
+{"name":"Gemini","url":"https://gemini.google.com","cat":"chat","desc":"Google 的对话助手，和多模态、搜索、办公套件打通","site":0,"price":"freemium"},
+{"name":"Grok","url":"https://grok.com","cat":"chat","desc":"xAI 出品，能读 X 上的实时讨论，风格比较直接","site":0,"price":"freemium"},
+{"name":"Microsoft Copilot","url":"https://copilot.microsoft.com","cat":"chat","desc":"微软系助手，接 Office 与 Windows，日常办公顺手","site":0,"price":"free"},
+{"name":"Poe","url":"https://poe.com","cat":"chat","desc":"一个入口聚合多家模型，想横向对比同一个问题很方便","site":0,"price":"freemium"},
+{"name":"Le Chat","url":"https://chat.mistral.ai","cat":"chat","desc":"Mistral 的助手，响应快，欧洲系合规路线","site":0,"price":"freemium"},
+{"name":"DeepSeek","url":"https://chat.deepseek.com","cat":"chat","desc":"国产开源模型，推理和代码强项，网页版直接免费","site":1,"price":"free","hot":true},
+{"name":"Kimi","url":"https://www.kimi.com","cat":"chat","desc":"月之暗面出品，长文档解析和联网搜索表现好","site":1,"price":"free","hot":true},
+{"name":"豆包","url":"https://www.doubao.com","cat":"chat","desc":"字节的对话助手，语音通话和图片理解体验最顺","site":1,"price":"free","hot":true},
+{"name":"通义千问","url":"https://www.tongyi.com","cat":"chat","desc":"阿里出品，能接文档、网盘与代码能力","site":1,"price":"free"},
+{"name":"腾讯元宝","url":"https://yuanbao.tencent.com","cat":"chat","desc":"混元加 DeepSeek 双模型，能直接读公众号和微信文件","site":1,"price":"free"},
+{"name":"文心一言","url":"https://yiyan.baidu.com","cat":"chat","desc":"百度出品，接搜索与百度系生态，中文语料多","site":1,"price":"free"},
+{"name":"智谱清言","url":"https://chatglm.cn","cat":"chat","desc":"智谱 GLM 系列，支持联网、画图和文件问答","site":1,"price":"free"},
+{"name":"海螺 AI","url":"https://hailuoai.com","cat":"chat","desc":"MiniMax 出品，语音与视频生成是隐藏亮点","site":1,"price":"freemium"},
+{"name":"讯飞星火","url":"https://xinghuo.xfyun.cn","cat":"chat","desc":"科大讯飞，语音交互和文档处理是老本行","site":1,"price":"free"},
+{"name":"跃问","url":"https://yuewen.com","cat":"chat","desc":"阶跃星辰的多模态助手，读图读表细节到位","site":1,"price":"free"},
+{"name":"天工","url":"https://www.tiangong.cn","cat":"chat","desc":"昆仑万维，搜索增强型对话，查资料比纯聊天好用","site":1,"price":"free"},
+
+{"name":"GitHub Copilot","url":"https://github.com/features/copilot","cat":"coding","desc":"最主流的编辑器内补全，学生可免费申请，生态最成熟","site":0,"price":"freemium","hot":true},
+{"name":"Cursor","url":"https://cursor.com","cat":"coding","desc":"AI 原生编辑器，能读整个项目并一次改多个文件","site":0,"price":"freemium","hot":true},
+{"name":"Claude Code","url":"https://claude.com/claude-code","cat":"coding","desc":"终端里的编程 Agent，重构和大改动最省事","site":0,"price":"paid","hot":true},
+{"name":"Windsurf","url":"https://windsurf.com","cat":"coding","desc":"Agent 式编辑器，自动补全不设上限，免费档大方","site":0,"price":"freemium"},
+{"name":"Cline","url":"https://cline.bot","cat":"coding","desc":"开源免费的 VS Code 编程 Agent，可以填自己的模型 Key","site":0,"price":"free","open":true},
+{"name":"Continue","url":"https://www.continue.dev","cat":"coding","desc":"开源可自托管的编码助手，能直接接本地模型","site":0,"price":"free","open":true},
+{"name":"Aider","url":"https://aider.chat","cat":"coding","desc":"命令行结对编程，改完自动生成规范的 Git 提交","site":0,"price":"free","open":true},
+{"name":"OpenHands","url":"https://github.com/All-Hands-AI/OpenHands","cat":"coding","desc":"开源的自主编程 Agent，能自己跑命令改仓库","site":0,"price":"free","open":true},
+{"name":"Trae","url":"https://www.trae.ai","cat":"coding","desc":"字节的 AI IDE，国际版免费额度给得足","site":0,"price":"freemium"},
+{"name":"v0","url":"https://v0.dev","cat":"coding","desc":"一句话生成可用的前端页面和组件，做原型极快","site":0,"price":"freemium","hot":true},
+{"name":"bolt.new","url":"https://bolt.new","cat":"coding","desc":"浏览器里从零生成并直接部署完整应用","site":0,"price":"freemium"},
+{"name":"Lovable","url":"https://lovable.dev","cat":"coding","desc":"面向非程序员的全栈应用生成，边聊边改","site":0,"price":"freemium"},
+{"name":"Replit","url":"https://replit.com","cat":"coding","desc":"云端 IDE 加 Agent，写完直接跑起来看到结果","site":0,"price":"freemium"},
+{"name":"Devin","url":"https://devin.ai","cat":"coding","desc":"自主软件工程师，能接任务单跑完整开发流程","site":0,"price":"paid"},
+{"name":"通义灵码","url":"https://lingma.aliyun.com","cat":"coding","desc":"阿里出品，IDE 插件装完即用，国内直连免费","site":1,"price":"free","hot":true},
+{"name":"CodeBuddy","url":"https://www.codebuddy.ai","cat":"coding","desc":"腾讯的 AI 编程助手，有独立 IDE 也有编辑器插件","site":1,"price":"freemium"},
+{"name":"文心快码","url":"https://comate.baidu.com","cat":"coding","desc":"百度的代码助手，中文注释和文档生成友好","site":1,"price":"freemium"},
+{"name":"CodeGeeX","url":"https://codegeex.cn","cat":"coding","desc":"智谱开源的编程模型，插件形态完全免费","site":1,"price":"free","open":true},
+{"name":"Qoder","url":"https://qoder.com","cat":"coding","desc":"阿里新一代 Agent 式编程工具，主打理解大仓库","site":1,"price":"freemium"},
+
+{"name":"Midjourney","url":"https://www.midjourney.com","cat":"image","desc":"审美天花板，出图质感和氛围感最强，适合概念与插画","site":0,"price":"paid","hot":true},
+{"name":"Ideogram","url":"https://ideogram.ai","cat":"image","desc":"图内文字排版最准，做海报、Logo、封面首选它","site":0,"price":"freemium","hot":true},
+{"name":"Leonardo AI","url":"https://leonardo.ai","cat":"image","desc":"游戏原画和角色一致性见长，参数可控性强","site":0,"price":"freemium"},
+{"name":"Recraft","url":"https://www.recraft.ai","cat":"image","desc":"能出真正的矢量图，还能锁定品牌风格统一出图","site":0,"price":"freemium"},
+{"name":"Adobe Firefly","url":"https://firefly.adobe.com","cat":"image","desc":"Adobe 出品，训练素材版权清晰，商用最省心","site":0,"price":"freemium"},
+{"name":"Krea","url":"https://www.krea.ai","cat":"image","desc":"实时生图加画布式修图，调参体验像在画画","site":0,"price":"freemium"},
+{"name":"Flux","url":"https://bfl.ai","cat":"image","desc":"开源图像模型的当红顶流，可下载可本地部署","site":0,"price":"freemium"},
+{"name":"Stability AI","url":"https://stability.ai","cat":"image","desc":"Stable Diffusion 官方，整个开源绘画生态的源头","site":0,"price":"freemium"},
+{"name":"Civitai","url":"https://civitai.com","cat":"image","desc":"全球最大的开源模型与 LoRA 社区，想找风格先来这","site":0,"price":"free"},
+{"name":"即梦","url":"https://jimeng.jianying.com","cat":"image","desc":"字节出品，生图和生视频同一个平台，免费额度多","site":1,"price":"freemium","hot":true},
+{"name":"LiblibAI","url":"https://www.liblib.art","cat":"image","desc":"国内最大的模型社区，在线生图加模型下载一站齐","site":1,"price":"freemium","hot":true},
+{"name":"通义万相","url":"https://tongyi.aliyun.com/wanxiang","cat":"image","desc":"阿里的文生图，中文语义理解好，还能出中文海报字","site":1,"price":"freemium"},
+{"name":"文心一格","url":"https://yige.baidu.com","cat":"image","desc":"百度的文生图，国风与水墨风格有专门优化","site":1,"price":"freemium"},
+{"name":"腾讯混元","url":"https://hunyuan.tencent.com","cat":"image","desc":"混元生图，中文书法和海报文字渲染比较准","site":1,"price":"free"},
+{"name":"无界 AI","url":"https://www.wujieai.com","cat":"image","desc":"国内老牌 AI 绘画平台，模型风格覆盖很全","site":1,"price":"freemium"},
+{"name":"SeaArt","url":"https://www.seaart.ai","cat":"image","desc":"海艺，Stable Diffusion 的在线版，模型库大","site":0,"price":"freemium"},
+
+{"name":"remove.bg","url":"https://www.remove.bg","cat":"image-edit","desc":"三秒抠掉背景，几乎是处理图片最省事的第一步","site":0,"price":"freemium"},
+{"name":"Upscayl","url":"https://upscayl.org","cat":"image-edit","desc":"开源本地放大，支持批量，全程不联网不上传","site":0,"price":"free","open":true},
+{"name":"Real-ESRGAN","url":"https://github.com/xinntao/Real-ESRGAN","cat":"image-edit","desc":"老牌开源超分与修复模型，动漫图修复效果突出","site":0,"price":"free","open":true},
+{"name":"IOPaint","url":"https://github.com/Sanster/IOPaint","cat":"image-edit","desc":"开源擦除工具，基于 LaMa 一键去水印去杂物","site":0,"price":"free","open":true},
+{"name":"Clipdrop","url":"https://clipdrop.co","cat":"image-edit","desc":"一整套图片处理小工具合集，换背景、去物、重打光","site":0,"price":"freemium"},
+{"name":"Photoroom","url":"https://www.photoroom.com","cat":"image-edit","desc":"电商产品图批量换背景加阴影，出图能直接上架","site":0,"price":"freemium"},
+{"name":"Magnific","url":"https://magnific.ai","cat":"image-edit","desc":"放大同时重绘细节，糊图救回来质感提升明显","site":0,"price":"paid"},
+{"name":"Pixelcut","url":"https://www.pixelcut.ai","cat":"image-edit","desc":"手机端也能用的商品图与人物图处理","site":0,"price":"freemium"},
+{"name":"Photoshop","url":"https://www.adobe.com/products/photoshop.html","cat":"image-edit","desc":"生成式填充，专业修图的天花板，复杂合成绕不开","site":0,"price":"paid"},
+{"name":"佐糖","url":"https://picwish.cn","cat":"image-edit","desc":"抠图、去水印、变清晰三件套，国内直连快","site":1,"price":"freemium","hot":true},
+{"name":"美图设计室","url":"https://www.designkit.com","cat":"image-edit","desc":"美图系，商品图和电商人像处理成套给方案","site":1,"price":"freemium"},
+{"name":"腾讯 ARC","url":"https://arc.tencent.com","cat":"image-edit","desc":"免费的人脸修复、动漫化与画质增强实验室","site":1,"price":"free"},
+{"name":"稿定设计","url":"https://www.gaoding.com","cat":"image-edit","desc":"国内一站式设计，抠图改图加模板都在里面","site":1,"price":"freemium"},
+
+{"name":"Sora","url":"https://sora.chatgpt.com","cat":"video","desc":"OpenAI 的视频生成，长镜头与物理一致性表现好","site":0,"price":"paid","hot":true},
+{"name":"Runway","url":"https://runwayml.com","cat":"video","desc":"专业级视频生成加编辑套装，功能覆盖面最全","site":0,"price":"freemium","hot":true},
+{"name":"Pika","url":"https://pika.art","cat":"video","desc":"上手最简单，特效模板多，适合做短视频素材","site":0,"price":"freemium"},
+{"name":"Luma Dream Machine","url":"https://lumalabs.ai/dream-machine","cat":"video","desc":"运镜自然，图生视频的稳定性和电影感好","site":0,"price":"freemium"},
+{"name":"Google Flow","url":"https://labs.google/flow","cat":"video","desc":"Google 的电影级视频生成与剪辑台，接 Veo 模型","site":0,"price":"paid"},
+{"name":"Hedra","url":"https://www.hedra.com","cat":"video","desc":"让一张静态照片开口说话，表演和口型自然","site":0,"price":"freemium"},
+{"name":"DomoAI","url":"https://domoai.app","cat":"video","desc":"把实拍视频转成动漫风格，做二创常用","site":0,"price":"freemium"},
+{"name":"Descript","url":"https://www.descript.com","cat":"video","desc":"改文字就等于改视频，口播类剪辑逻辑最友好","site":0,"price":"freemium"},
+{"name":"可灵","url":"https://app.klingai.com","cat":"video","desc":"国内视频生成第一梯队，人物动势和物理感自然","site":1,"price":"freemium","hot":true},
+{"name":"即梦视频","url":"https://jimeng.jianying.com","cat":"video","desc":"免费额度多，生成完能直接进剪映继续做","site":1,"price":"freemium","hot":true},
+{"name":"Vidu","url":"https://www.vidu.cn","cat":"video","desc":"清华系团队，角色一致性做得好，同一个人不换脸","site":1,"price":"freemium"},
+{"name":"海螺视频","url":"https://hailuoai.video","cat":"video","desc":"MiniMax 出品，画面真实感强，海外用户不少","site":1,"price":"freemium"},
+{"name":"PixVerse","url":"https://app.pixverse.ai","cat":"video","desc":"爱诗科技，特效模板多，上手几乎零门槛","site":1,"price":"freemium"},
+{"name":"通义万相视频","url":"https://wan.video","cat":"video","desc":"阿里的视频生成，中文场景和国风素材适配好","site":1,"price":"freemium"},
+{"name":"Wan 开源版","url":"https://github.com/Wan-Video/Wan2.2","cat":"video","desc":"阿里开源的视频模型，消费级显卡也能本地跑","site":0,"price":"free","open":true},
+{"name":"剪映","url":"https://www.capcut.cn","cat":"video","desc":"国内视频创作的默认工具，AI 字幕、成片、数字人都齐","site":1,"price":"freemium","hot":true},
+{"name":"CapCut","url":"https://www.capcut.com","cat":"video","desc":"剪映国际版，模板和特效库跟国内版不同","site":0,"price":"freemium"},
+
+{"name":"HeyGen","url":"https://www.heygen.com","cat":"human","desc":"数字人口播加多语种配音换脸，成熟度最高","site":0,"price":"freemium","hot":true},
+{"name":"Synthesia","url":"https://www.synthesia.io","cat":"human","desc":"企业培训类数字人视频，合规模板正规","site":0,"price":"paid"},
+{"name":"D-ID","url":"https://www.d-id.com","cat":"human","desc":"一张照片生成会说话的头像，API 接入方便","site":0,"price":"freemium"},
+{"name":"闪剪","url":"https://www.shanjian.tv","cat":"human","desc":"国内数字人短视频，口播可以批量成套产出","site":1,"price":"freemium"},
+{"name":"硅基智能","url":"https://www.guiji.com","cat":"human","desc":"国内数字人直播与短视频整体方案，偏商用","site":1,"price":"paid"},
+{"name":"来画","url":"https://www.laihua.com","cat":"human","desc":"动画加数字人视频制作，科普向内容好用","site":1,"price":"freemium"},
+{"name":"万兴播爆","url":"https://virbo.wondershare.cn","cat":"human","desc":"真人数字人口播，多语种配音一键切换","site":1,"price":"freemium"},
+
+{"name":"Suno","url":"https://suno.com","cat":"audio","desc":"一句描述出一首完整带唱的歌，出片级的音乐生成","site":0,"price":"freemium","hot":true},
+{"name":"Udio","url":"https://www.udio.com","cat":"audio","desc":"音质细腻，适合做编曲参考和分轨素材","site":0,"price":"freemium"},
+{"name":"ElevenLabs","url":"https://elevenlabs.io","cat":"audio","desc":"语音合成与克隆天花板，多语种情绪自然","site":0,"price":"freemium","hot":true},
+{"name":"Stable Audio","url":"https://www.stableaudio.com","cat":"audio","desc":"音效与背景音乐生成，做视频配乐很好用","site":0,"price":"freemium"},
+{"name":"Mureka","url":"https://www.mureka.ai","cat":"audio","desc":"昆仑万维的音乐平台，支持分轨与人声分离","site":0,"price":"freemium"},
+{"name":"LALAL.AI","url":"https://www.lalal.ai","cat":"audio","desc":"人声伴奏分离质量高，处理速度也快","site":0,"price":"paid"},
+{"name":"Adobe Podcast","url":"https://podcast.adobe.com","cat":"audio","desc":"一键把手机录音修成录音棚效果，免费可用","site":0,"price":"freemium"},
+{"name":"海绵音乐","url":"https://www.haimian.com","cat":"audio","desc":"字节出品，中文歌词演唱自然，国内直连免费","site":1,"price":"free","hot":true},
+{"name":"天工音乐","url":"https://music.tiangong.cn","cat":"audio","desc":"昆仑万维，中文歌词吐字清晰，唱得不像机器人","site":1,"price":"free"},
+{"name":"MiniMax Audio","url":"https://www.minimaxi.com/audio","cat":"audio","desc":"海螺语音，中文情绪化配音表现好，有开放 API","site":1,"price":"freemium"},
+{"name":"Fish Audio","url":"https://fish.audio","cat":"audio","desc":"中文音色多，支持声音克隆，开源模型可自部署","site":0,"price":"freemium","open":true},
+{"name":"网易天音","url":"https://tianyin.163.com","cat":"audio","desc":"编曲与 AI 写歌，做 Demo 和配乐方便","site":1,"price":"freemium"},
+{"name":"CosyVoice","url":"https://github.com/FunAudioLLM/CosyVoice","cat":"audio","desc":"阿里开源 TTS，支持零样本音色克隆","site":0,"price":"free","open":true},
+{"name":"IndexTTS","url":"https://github.com/index-tts/index-tts","cat":"audio","desc":"B 站开源的零样本语音合成，中文口播效果突出","site":0,"price":"free","open":true},
+{"name":"GPT-SoVITS","url":"https://github.com/RVC-Boss/GPT-SoVITS","cat":"audio","desc":"少样本音色克隆的经典方案，几分钟素材就能仿","site":0,"price":"free","open":true},
+{"name":"edge-tts","url":"https://github.com/rany2/edge-tts","cat":"audio","desc":"免费用微软音色批量配音，做视频成本几乎为零","site":0,"price":"free","open":true},
+{"name":"Ultimate Vocal Remover","url":"https://github.com/Anjok07/ultimatevocalremovergui","cat":"audio","desc":"开源本地分轨，LALAL.AI 的免费替代","site":0,"price":"free","open":true},
+
+{"name":"Whisper","url":"https://github.com/openai/whisper","cat":"asr","desc":"开源语音识别的基准，多语言准确率高","site":0,"price":"free","open":true,"hot":true},
+{"name":"faster-whisper","url":"https://github.com/SYSTRAN/faster-whisper","cat":"asr","desc":"更快的本地推理实现，显存占用也更低","site":0,"price":"free","open":true},
+{"name":"WhisperX","url":"https://github.com/m-bain/whisperX","cat":"asr","desc":"带字级时间对齐，做视频字幕几乎必装","site":0,"price":"free","open":true},
+{"name":"Otter.ai","url":"https://otter.ai","cat":"asr","desc":"英文会议记录标杆，实时转写加摘要","site":0,"price":"freemium"},
+{"name":"通义听悟","url":"https://tingwu.aliyun.com","cat":"asr","desc":"会议转写加摘要，免费额度多，国内直连","site":1,"price":"freemium","hot":true},
+{"name":"飞书妙记","url":"https://www.feishu.cn/product/minutes","cat":"asr","desc":"会议自动转写并提取待办，团队协作顺手","site":1,"price":"freemium"},
+{"name":"讯飞听见","url":"https://www.iflyrec.com","cat":"asr","desc":"中文识别老牌，口音和噪声环境下依然稳","site":1,"price":"freemium"},
+{"name":"网易见外","url":"https://jianwai.youdao.com","cat":"asr","desc":"视频字幕转写加翻译一体，中文界面免费","site":1,"price":"free"},
+
+{"name":"Notion AI","url":"https://www.notion.so/product/ai","cat":"writing","desc":"在文档里直接续写、总结、整理，不用切来切去","site":0,"price":"freemium"},
+{"name":"Grammarly","url":"https://www.grammarly.com","cat":"writing","desc":"英文语法、语气和清晰度润色，写英文邮件刚需","site":0,"price":"freemium"},
+{"name":"Jasper","url":"https://www.jasper.ai","cat":"writing","desc":"品牌风格的营销文案批量产出，团队协作向","site":0,"price":"paid"},
+{"name":"Copy.ai","url":"https://www.copy.ai","cat":"writing","desc":"工作流式文案与销售邮件生成，适合跑量","site":0,"price":"freemium"},
+{"name":"QuillBot","url":"https://quillbot.com","cat":"writing","desc":"改写降重和总结，学生写英文作业常备","site":0,"price":"freemium"},
+{"name":"WPS AI","url":"https://ai.wps.cn","cat":"writing","desc":"金山办公内嵌 AI，中文公文和表格处理最熟","site":1,"price":"freemium","hot":true},
+{"name":"腾讯文档 AI","url":"https://docs.qq.com","cat":"writing","desc":"在线文档内置助手，写完直接分享协作","site":1,"price":"freemium"},
+{"name":"秘塔写作猫","url":"https://xiezuocat.com","cat":"writing","desc":"中文纠错与改写，论文和公文里的错字基本逃不掉","site":1,"price":"freemium","hot":true},
+{"name":"新华妙笔","url":"https://miaobi.xinhuaskl.com","cat":"writing","desc":"公文写作专用，格式和措辞按体制内规范来","site":1,"price":"freemium"},
+{"name":"语雀","url":"https://www.yuque.com","cat":"writing","desc":"国内知识库与文档协作，排版干净适合写长文","site":1,"price":"freemium"},
+
+{"name":"Gamma","url":"https://gamma.app","cat":"ppt","desc":"一句话生成排好版的演示，改稿最省心的一个","site":0,"price":"freemium","hot":true},
+{"name":"Beautiful.ai","url":"https://www.beautiful.ai","cat":"ppt","desc":"设计感强的商务演示，版式自动保持整齐","site":0,"price":"paid"},
+{"name":"Tome","url":"https://tome.app","cat":"ppt","desc":"叙事型演示，讲故事的结构比堆字更顺","site":0,"price":"freemium"},
+{"name":"Presentations.ai","url":"https://www.presentations.ai","cat":"ppt","desc":"品牌一致性演示生成，适合企业统一视觉","site":0,"price":"paid"},
+{"name":"AiPPT","url":"https://www.aippt.cn","cat":"ppt","desc":"中文模板丰富，导出 pptx 格式不跑版","site":1,"price":"freemium","hot":true},
+{"name":"讯飞智文","url":"https://zhiwen.xfyun.cn","cat":"ppt","desc":"中文演示生成，模板风格偏正式汇报","site":1,"price":"freemium"},
+{"name":"MindShow","url":"https://www.mindshow.fun","cat":"ppt","desc":"写 Markdown 大纲直接变 PPT，程序员友好","site":1,"price":"free"},
+{"name":"吾道","url":"https://www.woodo.cn","cat":"ppt","desc":"在线 PPT 协作加 AI 生成，团队同时改不冲突","site":1,"price":"freemium"},
+{"name":"秒出 PPT","url":"https://miaochu.ai","cat":"ppt","desc":"出稿速度快模板库大，赶时间的时候能救场","site":1,"price":"freemium"},
+{"name":"美图 AI PPT","url":"https://ai.meitu.com","cat":"ppt","desc":"美图系出品，视觉审美在同类里比较在线","site":1,"price":"freemium"},
+
+{"name":"Perplexity","url":"https://www.perplexity.ai","cat":"search","desc":"带引用的 AI 搜索引擎，问完能顺着来源自己核","site":0,"price":"freemium","hot":true},
+{"name":"Phind","url":"https://www.phind.com","cat":"search","desc":"面向开发者的技术搜索，答案带代码和出处","site":0,"price":"freemium"},
+{"name":"Consensus","url":"https://consensus.app","cat":"search","desc":"只从论文里找结论，问「有没有证据」特别合适","site":0,"price":"freemium"},
+{"name":"Elicit","url":"https://elicit.com","cat":"search","desc":"文献综述自动化，找相关论文并抽表格","site":0,"price":"freemium","hot":true},
+{"name":"SciSpace","url":"https://typeset.io","cat":"search","desc":"论文阅读问答加翻译，英文文献啃不动的救星","site":0,"price":"freemium"},
+{"name":"Connected Papers","url":"https://www.connectedpapers.com","cat":"search","desc":"用关系图找相关论文，顺着图谱不至于漏掉关键文献","site":0,"price":"freemium"},
+{"name":"Semantic Scholar","url":"https://www.semanticscholar.org","cat":"search","desc":"免费学术搜索引擎，自带 AI 摘要和引用统计","site":0,"price":"free"},
+{"name":"arXiv","url":"https://arxiv.org","cat":"search","desc":"预印本论文第一站，新模型论文基本都先发这里","site":0,"price":"free"},
+{"name":"秘塔 AI 搜索","url":"https://metaso.cn","cat":"search","desc":"无广告、给来源，中文研究型搜索首选","site":1,"price":"free","hot":true},
+{"name":"纳米 AI 搜索","url":"https://www.n.cn","cat":"search","desc":"360 出品，多模型聚合搜索，一个入口问多个 AI","site":1,"price":"free"},
+{"name":"知乎直答","url":"https://zhida.zhihu.com","cat":"search","desc":"基于知乎内容的问答，找真实经验比找百科有用","site":1,"price":"free"},
+{"name":"AMiner","url":"https://www.aminer.cn","cat":"search","desc":"国内学者与论文知识图谱，查人查团队方便","site":1,"price":"free"},
+{"name":"博查 AI","url":"https://bochaai.com","cat":"search","desc":"给开发者用的中文搜索 API，接 RAG 常用","site":1,"price":"paid"},
+
+{"name":"NotebookLM","url":"https://notebooklm.google.com","cat":"knowledge","desc":"上传资料后基于原文问答，还能生成双人播客","site":0,"price":"free","hot":true},
+{"name":"Obsidian","url":"https://obsidian.md","cat":"knowledge","desc":"本地 Markdown 双链笔记，插件生态最庞大","site":0,"price":"freemium"},
+{"name":"Logseq","url":"https://logseq.com","cat":"knowledge","desc":"大纲式双链笔记，开源且数据在本地","site":0,"price":"free","open":true},
+{"name":"Napkin AI","url":"https://www.napkin.ai","cat":"knowledge","desc":"把一段文字自动变成示意图，做汇报省事","site":0,"price":"freemium"},
+{"name":"Notion","url":"https://www.notion.so","cat":"knowledge","desc":"文档加数据库的万能工作台，个人到团队都能用","site":0,"price":"freemium"},
+{"name":"ima","url":"https://ima.qq.com","cat":"knowledge","desc":"腾讯知识库，能收公众号和网页，微信生态最顺手","site":1,"price":"free","hot":true},
+{"name":"思源笔记","url":"https://b3log.org/siyuan","cat":"knowledge","desc":"国产本地优先笔记，块引用和双链做得扎实","site":1,"price":"freemium"},
+{"name":"有道云笔记","url":"https://note.youdao.com","cat":"knowledge","desc":"国内老牌云笔记，全平台同步稳","site":1,"price":"freemium"},
+{"name":"飞书知识库","url":"https://www.feishu.cn/product/wiki","cat":"knowledge","desc":"团队知识沉淀与权限管理，和文档表格打通","site":1,"price":"freemium"},
+
+{"name":"Coze 扣子","url":"https://www.coze.cn","cat":"agent","desc":"零代码搭 Bot 和工作流，国内插件生态最全","site":1,"price":"freemium","hot":true},
+{"name":"Dify","url":"https://dify.ai","cat":"agent","desc":"开源 LLM 应用平台，可完全私有化部署","site":1,"price":"free","open":true,"hot":true},
+{"name":"Manus","url":"https://manus.im","cat":"agent","desc":"通用型自主 Agent，能自己开浏览器把活干完","site":1,"price":"paid","hot":true},
+{"name":"FastGPT","url":"https://fastgpt.io","cat":"agent","desc":"国产知识库问答平台，开箱即用，可自部署","site":1,"price":"free","open":true},
+{"name":"RAGFlow","url":"https://ragflow.io","cat":"agent","desc":"深度文档理解的 RAG 引擎，扫描件表格也能吃","site":1,"price":"free","open":true},
+{"name":"影刀 RPA","url":"https://www.yingdao.com","cat":"agent","desc":"国产 RPA 加 AI，把重复的桌面操作自动化","site":1,"price":"freemium"},
+{"name":"n8n","url":"https://n8n.io","cat":"agent","desc":"开源自动化，接 AI 节点串工作流，可自托管","site":0,"price":"freemium","open":true,"hot":true},
+{"name":"Zapier","url":"https://zapier.com","cat":"agent","desc":"连接几千个 SaaS 的老牌自动化，覆盖面最广","site":0,"price":"freemium"},
+{"name":"Make","url":"https://www.make.com","cat":"agent","desc":"可视化自动化，流程一复杂就比 Zapier 顺手","site":0,"price":"freemium"},
+{"name":"Flowise","url":"https://flowiseai.com","cat":"agent","desc":"拖拽搭 AI 流程，开源，本地跑得住","site":0,"price":"free","open":true},
+{"name":"Langflow","url":"https://www.langflow.org","cat":"agent","desc":"可视化搭建 LangChain 流程，调试直观","site":0,"price":"free","open":true},
+{"name":"AnythingLLM","url":"https://anythingllm.com","cat":"agent","desc":"本地知识库问答一体机，装完就能喂文档","site":0,"price":"free","open":true},
+{"name":"Browser Use","url":"https://browser-use.com","cat":"agent","desc":"让 AI 自己操作浏览器，网页重复劳动直接交给它","site":0,"price":"free","open":true},
+{"name":"CrewAI","url":"https://www.crewai.com","cat":"agent","desc":"多智能体协作框架，一个团队分工干一件事","site":0,"price":"freemium"},
+{"name":"AutoGen","url":"https://github.com/microsoft/autogen","cat":"agent","desc":"微软的多 Agent 框架，研究多角色协作常用","site":0,"price":"free","open":true},
+
+{"name":"Hugging Face","url":"https://huggingface.co","cat":"platform","desc":"全球开源模型与数据集大本营，找模型先来这","site":0,"price":"freemium","hot":true},
+{"name":"OpenRouter","url":"https://openrouter.ai","cat":"platform","desc":"一个 Key 调上百个模型，比价和切换最方便","site":0,"price":"freemium","hot":true},
+{"name":"Replicate","url":"https://replicate.com","cat":"platform","desc":"一键跑开源模型，按秒计费，做验证极快","site":0,"price":"paid"},
+{"name":"Together AI","url":"https://www.together.ai","cat":"platform","desc":"开源模型托管，推理速度和价格都不错","site":0,"price":"paid"},
+{"name":"Groq","url":"https://groq.com","cat":"platform","desc":"自研芯片推理，出字速度快到离谱","site":0,"price":"freemium"},
+{"name":"Fireworks AI","url":"https://fireworks.ai","cat":"platform","desc":"高性能推理与模型微调，生产环境常用","site":0,"price":"paid"},
+{"name":"ModelScope 魔搭","url":"https://modelscope.cn","cat":"platform","desc":"阿里社区，国内下载模型首选，不用额外网络配置","site":1,"price":"free","hot":true},
+{"name":"硅基流动","url":"https://cloud.siliconflow.cn","cat":"platform","desc":"国内模型 API 聚合，价格低还送免费额度","site":1,"price":"freemium","hot":true},
+{"name":"阿里云百炼","url":"https://bailian.console.aliyun.com","cat":"platform","desc":"通义全家桶 API 与 Agent 平台，企业接入常见","site":1,"price":"freemium"},
+{"name":"火山方舟","url":"https://www.volcengine.com/product/ark","cat":"platform","desc":"字节的模型服务平台，豆包系列 API 都在这","site":1,"price":"freemium"},
+{"name":"智谱开放平台","url":"https://open.bigmodel.cn","cat":"platform","desc":"GLM 系列 API，有长期免费的轻量模型可用","site":1,"price":"freemium"},
+{"name":"DeepSeek 开放平台","url":"https://platform.deepseek.com","cat":"platform","desc":"推理和代码模型 API，价格是它最大的优势","site":1,"price":"paid"},
+{"name":"Kimi 开放平台","url":"https://platform.moonshot.cn","cat":"platform","desc":"Kimi 系列 API，长上下文档位给得大方","site":1,"price":"paid"},
+{"name":"百度千帆","url":"https://qianfan.cloud.baidu.com","cat":"platform","desc":"文心系列 API 与企业级模型服务","site":1,"price":"freemium"},
+{"name":"腾讯混元 API","url":"https://cloud.tencent.com/product/hunyuan","cat":"platform","desc":"混元大模型的开放接口与 TI 平台，和腾讯云打通","site":1,"price":"freemium"},
+{"name":"讯飞星辰","url":"https://agent.xfyun.cn","cat":"platform","desc":"星火大模型的 Agent 开发平台，语音与教育场景组件齐","site":1,"price":"freemium"},
+{"name":"PPIO 派欧云","url":"https://ppinfra.com","cat":"platform","desc":"国内 GPU 算力与模型 API 平台，按量付费","site":1,"price":"freemium"},
+
+{"name":"Ollama","url":"https://ollama.com","cat":"local","desc":"一条命令在本地跑大模型，上手成本最低","site":0,"price":"free","open":true,"hot":true},
+{"name":"LM Studio","url":"https://lmstudio.ai","cat":"local","desc":"图形界面本地跑模型，不写代码也能用","site":0,"price":"free","hot":true},
+{"name":"ComfyUI","url":"https://www.comfy.org","cat":"local","desc":"节点式图像视频生成工作流，插件生态最大","site":0,"price":"free","open":true,"hot":true},
+{"name":"Stable Diffusion WebUI","url":"https://github.com/AUTOMATIC1111/stable-diffusion-webui","cat":"local","desc":"经典本地绘画界面，教程和插件最多","site":0,"price":"free","open":true},
+{"name":"llama.cpp","url":"https://github.com/ggml-org/llama.cpp","cat":"local","desc":"量化推理的底层实现，各种硬件的起点","site":0,"price":"free","open":true},
+{"name":"vLLM","url":"https://github.com/vllm-project/vllm","cat":"local","desc":"高吞吐推理引擎，自己部署服务选它","site":0,"price":"free","open":true},
+{"name":"text-generation-webui","url":"https://github.com/oobabooga/text-generation-webui","cat":"local","desc":"功能最全的本地模型前端，参数几乎全可调","site":0,"price":"free","open":true},
+{"name":"Jan","url":"https://jan.ai","cat":"local","desc":"开源离线助手，界面干净，隐私优先","site":0,"price":"free","open":true},
+{"name":"GPT4All","url":"https://www.nomic.ai/gpt4all","cat":"local","desc":"本地运行还能喂自己的文档，老机器也能跑","site":0,"price":"free","open":true},
+{"name":"Open WebUI","url":"https://openwebui.com","cat":"local","desc":"自托管的类 ChatGPT 界面，接自己的模型","site":0,"price":"free","open":true},
+{"name":"Pinokio","url":"https://pinokio.computer","cat":"local","desc":"一键安装各种 AI 应用，省掉环境配置的苦","site":0,"price":"free"},
+{"name":"Msty","url":"https://msty.app","cat":"local","desc":"本地模型和云端模型混着用，一个界面管两边","site":0,"price":"freemium"},
+
+{"name":"Figma","url":"https://www.figma.com","cat":"design","desc":"界面设计标准工具，AI 插件生态最丰富","site":0,"price":"freemium","hot":true},
+{"name":"Framer","url":"https://www.framer.com","cat":"design","desc":"AI 生成网站并直接发布，做落地页省事","site":0,"price":"freemium"},
+{"name":"Uizard","url":"https://uizard.io","cat":"design","desc":"草图或截图秒变可编辑原型，改需求快","site":0,"price":"freemium"},
+{"name":"Galileo AI","url":"https://www.usegalileo.ai","cat":"design","desc":"文字生成高保真 UI，出稿阶段能省大把时间","site":0,"price":"paid"},
+{"name":"Looka","url":"https://looka.com","cat":"design","desc":"AI 生成 Logo 和完整品牌视觉套件","site":0,"price":"paid"},
+{"name":"Khroma","url":"http://khroma.co","cat":"design","desc":"按你的偏好生成配色方案，选色不再瞎猜","site":0,"price":"free"},
+{"name":"即时设计","url":"https://js.design","cat":"design","desc":"国内在线设计工具，免额外网络配置可协作","site":1,"price":"freemium","hot":true},
+{"name":"MasterGo","url":"https://mastergo.com","cat":"design","desc":"国产设计协作平台，团队交付流程顺","site":1,"price":"freemium"},
+{"name":"蓝湖","url":"https://lanhuapp.com","cat":"design","desc":"设计稿交付与标注，前端拿标注直接写","site":1,"price":"freemium"},
+{"name":"Canva","url":"https://www.canva.cn","cat":"design","desc":"模板海量，非设计师也能做出像样的图","site":1,"price":"freemium"},
+
+{"name":"ChatExcel","url":"https://chatexcel.com","cat":"data","desc":"用聊天的方式处理表格，北大团队出品，国内直连","site":1,"price":"freemium","hot":true},
+{"name":"镝数图表","url":"https://dycharts.com","cat":"data","desc":"中文数据可视化，模板多，导出直接用","site":1,"price":"freemium"},
+{"name":"维格表","url":"https://vika.cn","cat":"data","desc":"多维表格，可以当成轻量数据库来用","site":1,"price":"freemium"},
+{"name":"帆软 FineChatBI","url":"https://www.fanruan.com","cat":"data","desc":"企业级对话式 BI，问一句话出报表","site":1,"price":"paid"},
+{"name":"Julius AI","url":"https://julius.ai","cat":"data","desc":"上传数据自动分析并出图，写结论","site":0,"price":"freemium"},
+{"name":"Rows","url":"https://rows.com","cat":"data","desc":"表格里内置 AI 函数和网页抓取","site":0,"price":"freemium"},
+{"name":"Formula Bot","url":"https://formulabot.com","cat":"data","desc":"一句话生成 Excel 公式和 VBA，不用背语法","site":0,"price":"freemium"},
+
+{"name":"DeepL","url":"https://www.deepl.com","cat":"translate","desc":"欧洲语言翻译质量最好，译文读起来不自带机翻味","site":0,"price":"freemium","hot":true},
+{"name":"Trancy","url":"https://www.trancy.org","cat":"translate","desc":"看视频学外语的双语字幕工具，逐句对照","site":0,"price":"freemium"},
+{"name":"Language Reactor","url":"https://www.languagereactor.com","cat":"translate","desc":"给 Netflix 和 YouTube 加双语字幕，边看边学","site":0,"price":"freemium"},
+{"name":"沙拉查词","url":"https://saladict.crimx.com","cat":"translate","desc":"开源划词翻译，聚合多个词典引擎","site":0,"price":"free","open":true},
+{"name":"沉浸式翻译","url":"https://immersivetranslate.com","cat":"translate","desc":"浏览器插件，双语对照看外网，用过就回不去","site":1,"price":"freemium","hot":true},
+{"name":"腾讯交互翻译","url":"https://transmart.qq.com","cat":"translate","desc":"腾讯出品，长文和文档翻译质量稳","site":1,"price":"free"},
+{"name":"彩云小译","url":"https://fanyi.caiyunapp.com","cat":"translate","desc":"中英日同传，网页翻译排版干净","site":1,"price":"freemium"},
+{"name":"有道翻译","url":"https://fanyi.youdao.com","cat":"translate","desc":"国内最常用，词典加文档翻译一站式","site":1,"price":"freemium"},
+{"name":"百度翻译","url":"https://fanyi.baidu.com","cat":"translate","desc":"老牌翻译，接口稳定，语种覆盖广","site":1,"price":"freemium"},
+{"name":"欧路词典","url":"https://www.eudic.net","cat":"translate","desc":"本地词典加 AI 释义，能离线用，查词快","site":1,"price":"freemium"}
+]
+}
+</script>
+
+<script>
+(function(){
+  'use strict';
+  var DATA = JSON.parse(document.getElementById('tool-data').textContent);
+  var CATS = DATA.cats, TOOLS = DATA.tools;
+  var CATNAME = {}; CATS.forEach(function(c){ CATNAME[c.k] = c.n; });
+  var PRICE = { free:'免费', freemium:'免费额度', paid:'付费' };
+  var FAV_KEY = 'ainav.favs.v1';
+
+  var EN = /^[\x20-\x7E]/;
+  document.getElementById('updated').textContent = DATA.updated;
+  document.getElementById('total').textContent = TOOLS.length;
+  document.getElementById('totalCat').textContent = CATS.length;
+
+  /* ---------- 状态 ---------- */
+  var favs;
+  try { favs = new Set(JSON.parse(localStorage.getItem(FAV_KEY) || '[]')); } catch(e){ favs = new Set(); }
+  var state = { q:'', cat:'all', cn:false, free:false, open:false, fav:false, sort:'default' };
+
+  /* ---------- 工具函数 ---------- */
+  function domain(u){ try { return new URL(u).hostname.replace(/^www\./,''); } catch(e){ return u; } }
+  function initials(name){
+    var s = name.trim();
+    if (!EN.test(s)) return s.slice(0,2);
+    var parts = s.split(/[\s._\-]+/).filter(Boolean);
+    return (parts.length > 1 ? parts[0][0] + parts[1][0] : s.slice(0,2)).toUpperCase();
+  }
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+  /* ---------- 分类栏 ---------- */
+  var catbar = document.getElementById('catbar');
+  (function buildCats(){
+    var counts = {}; TOOLS.forEach(function(t){ counts[t.cat] = (counts[t.cat]||0)+1; });
+    var html = '<button class="cat" data-cat="all" aria-pressed="true">全部 <span class="n">'+TOOLS.length+'</span></button>';
+    CATS.forEach(function(c){
+      if (!counts[c.k]) return;
+      html += '<button class="cat" data-cat="'+c.k+'" aria-pressed="false">'+esc(c.n)+' <span class="n">'+counts[c.k]+'</span></button>';
+    });
+    catbar.innerHTML = html;
+    catbar.addEventListener('click', function(e){
+      var b = e.target.closest('.cat'); if(!b) return;
+      state.cat = b.dataset.cat;
+      [].forEach.call(catbar.querySelectorAll('.cat'), function(x){ x.setAttribute('aria-pressed', String(x===b)); });
+      render(); window.scrollTo({ top: 0, behavior:'smooth' });
+    });
+  })();
+
+  /* ---------- 卡片 ---------- */
+  function cardHTML(t){
+    var f = favs.has(t.name);
+    var badges = '<span class="badge '+(t.site ? 'ok':'')+'">'+(t.site ? '国内直连':'需自备网络')+'</span>'
+      + '<span class="badge'+(t.price==='free' ? ' free':'')+'">'+PRICE[t.price]+'</span>'
+      + (t.open ? '<span class="badge">开源</span>' : '')
+      + '<span class="badge">'+esc(CATNAME[t.cat]||'')+'</span>';
+    return '<article class="card">'
+      + '<a class="card-link" href="'+esc(t.url)+'" target="_blank" rel="noopener nofollow" aria-label="打开 '+esc(t.name)+' 官网"></a>'
+      + '<div class="card-head">'
+      +   '<span class="logo" aria-hidden="true">'+esc(initials(t.name))+'</span>'
+      +   '<div class="card-title"><h3>'+esc(t.name)+(t.hot?'<span class="star" title="常用推荐">★</span>':'')+'</h3>'
+      +     '<span class="domain">'+esc(domain(t.url))+'</span></div>'
+      +   '<button class="fav" data-name="'+esc(t.name)+'" aria-pressed="'+f+'" title="'+(f?'取消收藏':'加入收藏')+'" aria-label="收藏 '+esc(t.name)+'">'+(f?'★':'☆')+'</button>'
+      + '</div>'
+      + '<p class="card-desc">'+esc(t.desc)+'</p>'
+      + '<div class="badges">'+badges+'</div>'
+      + '</article>';
+  }
+
+  /* ---------- 精选 ---------- */
+  var FEATURED = ['DeepSeek','豆包','通义灵码','秘塔 AI 搜索','即梦','剪映','ima','沉浸式翻译'];
+  (function buildFeatured(){
+    var pick = [], byName = {}; TOOLS.forEach(function(t){ byName[t.name] = t; });
+    FEATURED.forEach(function(n){ if (byName[n]) pick.push(byName[n]); });
+    if (pick.length < 8){
+      TOOLS.filter(function(t){ return t.hot; }).forEach(function(t){
+        if (pick.length < 8 && pick.indexOf(t) < 0) pick.push(t);
+      });
+    }
+    pick = pick.slice(0,8);
+    document.getElementById('fgrid').innerHTML = pick.map(cardHTML).join('');
+  })();
+
+  /* ---------- 筛选 + 渲染 ---------- */
+  var results = document.getElementById('results');
+  var empty = document.getElementById('empty');
+  var countEl = document.getElementById('count');
+  var featured = document.getElementById('featured');
+
+  function match(t){
+    if (state.cat !== 'all' && t.cat !== state.cat) return false;
+    if (state.cn && !t.site) return false;
+    if (state.free && t.price === 'paid') return false;
+    if (state.open && !t.open) return false;
+    if (state.fav && !favs.has(t.name)) return false;
+    if (state.q){
+      var hay = (t.name + ' ' + t.desc + ' ' + t.cat + ' ' + CATNAME[t.cat] + ' ' + domain(t.url) + ' ' + t.url).toLowerCase();
+      var words = state.q.toLowerCase().split(/\s+/).filter(Boolean);
+      for (var i=0;i<words.length;i++){ if (hay.indexOf(words[i]) < 0) return false; }
+    }
+    return true;
+  }
+
+  function sorted(list){
+    if (state.sort === 'name') return list.slice().sort(function(a,b){ return a.name.localeCompare(b.name,'zh'); });
+    return list.slice().sort(function(a,b){ return (b.hot?1:0) - (a.hot?1:0); });
+  }
+
+  function render(){
+    var isFiltering = state.q || state.cat !== 'all' || state.cn || state.free || state.open || state.fav;
+    featured.style.display = isFiltering ? 'none' : '';
+
+    var list = TOOLS.filter(match);
+    countEl.innerHTML = '显示 <b>'+list.length+'</b> 个工具' + (isFiltering ? '' : '（全部 ' + TOOLS.length + ' 个）');
+    empty.classList.toggle('on', list.length === 0);
+
+    if (state.cat !== 'all' || isFiltering){
+      results.innerHTML = '<div class="grid">' + sorted(list).map(cardHTML).join('') + '</div>';
+    } else {
+      // 全部分类视图：按类别分组，便于扫读
+      var html = '', groups = {};
+      sorted(list).forEach(function(t){ (groups[t.cat] = groups[t.cat] || []).push(t); });
+      CATS.forEach(function(c){
+        var g = groups[c.k]; if(!g || !g.length) return;
+        html += '<section class="catblock"><header><h2>'+esc(c.n)+'</h2><span class="n">'+g.length+'</span></header>'
+              + '<div class="grid">' + g.map(cardHTML).join('') + '</div></section>';
+      });
+      results.innerHTML = html;
+    }
+  }
+
+  /* ---------- 收藏 ---------- */
+  document.body.addEventListener('click', function(e){
+    var b = e.target.closest('.fav'); if(!b) return;
+    e.preventDefault(); e.stopPropagation();
+    var n = b.dataset.name;
+    if (favs.has(n)) { favs.delete(n); toast('已取消收藏 · ' + n); }
+    else { favs.add(n); toast('已收藏 · ' + n); }
+    try { localStorage.setItem(FAV_KEY, JSON.stringify([].slice.call(favs))); } catch(err){}
+    document.querySelectorAll('.fav[data-name="'+n+'"]').forEach(function(x){
+      var on = favs.has(n);
+      x.setAttribute('aria-pressed', String(on));
+      x.textContent = on ? '★' : '☆';
+    });
+    if (state.fav) render();
+  });
+
+  /* ---------- 搜索 ---------- */
+  var input = document.getElementById('q'), wrap = document.getElementById('searchWrap'), clearBtn = document.getElementById('clearQ');
+  var timer;
+  input.addEventListener('input', function(){
+    wrap.classList.toggle('has-val', !!input.value);
+    clearTimeout(timer);
+    timer = setTimeout(function(){ state.q = input.value.trim(); render(); }, 90);
+  });
+  clearBtn.addEventListener('click', function(){ input.value=''; wrap.classList.remove('has-val'); state.q=''; render(); input.focus(); });
+
+  /* ---------- 筛选按钮 ---------- */
+  [].forEach.call(document.querySelectorAll('.tgl'), function(b){
+    b.addEventListener('click', function(){
+      var k = b.dataset.f, on = b.getAttribute('aria-pressed') !== 'true';
+      b.setAttribute('aria-pressed', String(on));
+      if (k === 'free') state.free = on; else state[k] = on;
+      render();
+    });
+  });
+  document.getElementById('sort').addEventListener('change', function(){ state.sort = this.value; render(); });
+
+  /* ---------- 快捷键 ---------- */
+  document.addEventListener('keydown', function(e){
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k'){ e.preventDefault(); input.focus(); input.select(); return; }
+    if (e.key === '/' && document.activeElement !== input){ e.preventDefault(); input.focus(); return; }
+    if (e.key === 'Escape' && document.activeElement === input){ input.value=''; wrap.classList.remove('has-val'); state.q=''; render(); input.blur(); }
+  });
+
+  /* ---------- toast ---------- */
+  var toastEl = document.getElementById('toast'), tid;
+  function toast(msg){
+    toastEl.textContent = msg; toastEl.classList.add('on');
+    clearTimeout(tid); tid = setTimeout(function(){ toastEl.classList.remove('on'); }, 1500);
+  }
+
+  render();
+})();
+</script>
+</body>
+</html>

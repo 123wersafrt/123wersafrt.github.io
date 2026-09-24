@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# 如果你的域名不是根目录部署，把下面的路径换成实际的
+Sitemap: https://123wersafrt.github.io/sitemap.xml
