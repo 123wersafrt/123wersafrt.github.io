@@ -7,6 +7,7 @@
 <meta name="description" content="落曦工具导航站：按类别整理的常用 AI 工具导航，对话、编程、图像、视频、音频、写作、PPT、搜索、Agent、本地部署等，全部直达官网，并标注国内是否直连、是否免费、是否开源。">
 <meta name="keywords" content="AI工具,AI导航,AI工具大全,AI网站,人工智能工具,AI工具箱,落曦工具导航站">
 <meta name="theme-color" content="#F2EBE0">
+<meta name="format-detection" content="telephone=no">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://123wersafrt.github.io/">
 <meta property="og:type" content="website">
@@ -72,9 +73,17 @@ kbd{font-family:var(--mono);font-size:10px;color:var(--fg-3);border:1px solid va
 @media(max-width:720px){.search{max-width:none}.brand{order:0}.top-in{gap:12px}}
 
 /* ============ category bar ============ */
-.catbar{border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--bg) 80%,transparent)}
-.catbar-in{display:flex;gap:6px;overflow-x:auto;padding:10px 20px;scrollbar-width:none}
+.catbar{border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);position:sticky;top:60px;z-index:49}
+.catbar-in{display:flex;gap:6px;overflow-x:auto;padding:10px max(20px, calc((100% - var(--maxw)) / 2));scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;scroll-snap-type:x proximity;cursor:grab;user-select:none;-webkit-user-select:none}
 .catbar-in::-webkit-scrollbar{display:none}
+.catbar-in.dragging{cursor:grabbing;scroll-snap-type:none}
+.catbar-in .cat{flex:0 0 auto;scroll-snap-align:center}
+/* 左右滑动的渐隐提示：哪边还有内容就亮哪边 */
+.catbar::before,.catbar::after{content:'';position:absolute;top:0;bottom:1px;width:34px;pointer-events:none;opacity:0;transition:opacity .18s;z-index:1}
+.catbar::before{left:0;background:linear-gradient(to right,var(--bg) 25%,transparent)}
+.catbar::after{right:0;background:linear-gradient(to left,var(--bg) 25%,transparent)}
+.catbar.fade-l::before{opacity:1}
+.catbar.fade-r::after{opacity:1}
 .cat{white-space:nowrap;padding:6px 12px;border-radius:999px;border:1px solid var(--line);color:var(--fg-2);font-size:13px;transition:.15s;display:flex;gap:7px;align-items:center}
 .cat:hover{border-color:var(--line-2);color:var(--fg)}
 .cat .n{font-family:var(--mono);font-size:10.5px;color:var(--fg-3)}
@@ -83,6 +92,7 @@ kbd{font-family:var(--mono);font-size:10px;color:var(--fg-3);border:1px solid va
 
 /* ============ toolbar ============ */
 .tools{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:22px 0 6px}
+.filters{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .count{font-size:13px;color:var(--fg-2);margin-right:auto}
 .count b{color:var(--fg);font-weight:600;font-family:var(--mono);font-size:14px}
 .tgl{display:flex;align-items:center;gap:6px;padding:5px 11px;border-radius:999px;border:1px solid var(--line);color:var(--fg-2);font-size:12.5px;transition:.15s}
@@ -143,6 +153,51 @@ select:hover{border-color:var(--line-2)}
 
 .toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,12px);background:var(--panel-3);border:1px solid var(--line-2);color:var(--fg);padding:8px 16px;border-radius:9px;font-size:12.5px;opacity:0;pointer-events:none;transition:.22s;z-index:99;box-shadow:var(--shadow)}
 .toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* ============ 手机适配 ============ */
+@media(max-width:720px){
+  .wrap{padding:0 14px}
+  body{padding-bottom:calc(56px + env(safe-area-inset-bottom,0px))}
+  .top-in{height:56px;gap:10px}
+  .brand{min-width:0}
+  .brand-mark{width:24px;height:24px;font-size:10px}
+  .brand-t{font-size:13.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .search{min-width:0;margin-left:auto}
+  .search input{height:40px;padding:0 38px 0 34px;font-size:14px}
+  .search .keys{display:none}
+  .catbar{top:56px}
+  .catbar-in{padding:9px 14px;gap:8px}
+  .cat{padding:9px 14px;font-size:13.5px}
+  .tools{padding:16px 0 4px;gap:8px}
+  .count{flex:1 0 100%;margin-right:0;font-size:12.5px}
+  .filters{width:100%;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;padding-bottom:2px}
+  .filters::-webkit-scrollbar{display:none}
+  .tgl{flex:0 0 auto;padding:8px 13px;font-size:13px}
+  .selwrap{flex:0 0 auto}
+  select{padding:8px 26px 8px 13px;font-size:13px}
+  .featured{padding:14px 0 2px}
+  .fgrid{display:flex;overflow-x:auto;gap:10px;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;scroll-snap-type:x proximity;margin:0 -14px;padding:2px 14px 6px}
+  .fgrid::-webkit-scrollbar{display:none}
+  .fgrid > *{flex:0 0 auto;width:230px;scroll-snap-align:start}
+  .grid{grid-template-columns:1fr;gap:10px;padding:12px 0 6px}
+  .card{min-height:0;padding:14px}
+  .card-desc{font-size:13px}
+  .fav{width:34px;height:34px;font-size:16px;margin:-4px -6px 0 0}
+  .badge{font-size:11.5px;padding:3px 8px}
+  .foot{margin-top:40px}
+}
+@media(max-width:380px){
+  .brand-t{max-width:92px}
+}
+/* 触屏设备：去掉 hover 悬停态，改为按压反馈 */
+@media(hover:none){
+  .card:hover{transform:none;background:var(--panel);border-color:var(--line)}
+  .card:active{background:var(--panel-2);border-color:var(--line-2)}
+  .cat:hover{border-color:var(--line);color:var(--fg-2)}
+  .cat[aria-pressed="true"]{border-color:var(--accent-line);color:var(--accent)}
+  .tgl:hover{border-color:var(--line)}
+  .tgl[aria-pressed="true"]{border-color:var(--accent-line);color:var(--accent)}
+}
 </style>
 </head>
 <body>
@@ -156,7 +211,7 @@ select:hover{border-color:var(--line-2)}
     </a>
     <div class="search" id="searchWrap">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
-      <input id="q" type="search" placeholder="搜工具名、用途或域名，比如「抠图」「可灵」「翻墙」" autocomplete="off" spellcheck="false" aria-label="搜索 AI 工具">
+      <input id="q" type="search" inputmode="search" enterkeyhint="search" placeholder="搜工具名、用途或域名，比如「抠图」「可灵」「翻墙」" autocomplete="off" spellcheck="false" aria-label="搜索 AI 工具">
       <span class="keys"><kbd>Ctrl</kbd><kbd>K</kbd></span>
       <button class="clear" id="clearQ" title="清空" aria-label="清空搜索">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
@@ -166,23 +221,25 @@ select:hover{border-color:var(--line-2)}
 </header>
 
 <nav class="catbar" aria-label="工具分类">
-  <div class="catbar-in wrap" id="catbar"></div>
+  <div class="catbar-in" id="catbar"></div>
 </nav>
 
 <main class="wrap">
   <div class="tools">
     <span class="count" id="count"></span>
-    <button class="tgl" data-f="cn" aria-pressed="false"><span class="dot"></span>国内直连</button>
-    <button class="tgl" data-f="free" aria-pressed="false"><span class="dot"></span>可免费用</button>
-    <button class="tgl" data-f="open" aria-pressed="false"><span class="dot"></span>开源</button>
-    <button class="tgl" data-f="fav" aria-pressed="false">★ 我的收藏</button>
-    <span class="selwrap">
-      <select id="sort" aria-label="排序">
-        <option value="default">推荐优先</option>
-        <option value="name">按名称排序</option>
-      </select>
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
-    </span>
+    <div class="filters">
+      <button class="tgl" data-f="cn" aria-pressed="false"><span class="dot"></span>国内直连</button>
+      <button class="tgl" data-f="free" aria-pressed="false"><span class="dot"></span>可免费用</button>
+      <button class="tgl" data-f="open" aria-pressed="false"><span class="dot"></span>开源</button>
+      <button class="tgl" data-f="fav" aria-pressed="false">★ 我的收藏</button>
+      <span class="selwrap">
+        <select id="sort" aria-label="排序">
+          <option value="default">推荐优先</option>
+          <option value="name">按名称排序</option>
+        </select>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </span>
+    </div>
   </div>
 
   <section class="featured" id="featured">
@@ -522,6 +579,7 @@ select:hover{border-color:var(--line-2)}
 
   /* ---------- 分类栏 ---------- */
   var catbar = document.getElementById('catbar');
+  var catbarNav = document.querySelector('.catbar');
   (function buildCats(){
     var counts = {}; TOOLS.forEach(function(t){ counts[t.cat] = (counts[t.cat]||0)+1; });
     var html = '<button class="cat" data-cat="all" aria-pressed="true">全部 <span class="n">'+TOOLS.length+'</span></button>';
@@ -532,11 +590,47 @@ select:hover{border-color:var(--line-2)}
     catbar.innerHTML = html;
     catbar.addEventListener('click', function(e){
       var b = e.target.closest('.cat'); if(!b) return;
+      if (catbar._moved) return;            // 拖拽滑动后不当成点击
       state.cat = b.dataset.cat;
       [].forEach.call(catbar.querySelectorAll('.cat'), function(x){ x.setAttribute('aria-pressed', String(x===b)); });
+      scrollCatIntoView(b);
       render(); window.scrollTo({ top: 0, behavior:'smooth' });
     });
+
+    /* 左右滑动：桌面拖拽 + 触屏惯性（原生 overflow-x），配边缘渐隐提示 */
+    var down = false, startX = 0, startL = 0;
+    catbar.addEventListener('pointerdown', function(e){
+      if (e.pointerType === 'touch') return;   // 触屏交给原生滑动
+      down = true; catbar._moved = false; startX = e.clientX; startL = catbar.scrollLeft;
+      catbar.classList.add('dragging');
+    });
+    window.addEventListener('pointermove', function(e){
+      if (!down) return;
+      var dx = e.clientX - startX;
+      if (Math.abs(dx) > 4) catbar._moved = true;
+      catbar.scrollLeft = startL - dx;
+    });
+    window.addEventListener('pointerup', function(){
+      if (!down) return;
+      down = false; catbar.classList.remove('dragging');
+      setTimeout(function(){ catbar._moved = false; }, 0);
+    });
+    function updateFade(){
+      var max = catbar.scrollWidth - catbar.clientWidth;
+      catbarNav.classList.toggle('fade-l', catbar.scrollLeft > 4);
+      catbarNav.classList.toggle('fade-r', catbar.scrollLeft < max - 4);
+    }
+    catbar.addEventListener('scroll', updateFade, { passive:true });
+    window.addEventListener('resize', updateFade);
+    updateFade();
   })();
+
+  /* 点选分类后把按钮滚进可视区（触屏长分类栏时否则看不见选中态） */
+  function scrollCatIntoView(b){
+    var l = b.offsetLeft, r = l + b.offsetWidth;
+    if (l < catbar.scrollLeft) catbar.scrollTo({ left: l - 16, behavior:'smooth' });
+    else if (r > catbar.scrollLeft + catbar.clientWidth) catbar.scrollTo({ left: r - catbar.clientWidth + 16, behavior:'smooth' });
+  }
 
   /* ---------- 卡片 ---------- */
   function cardHTML(t){
