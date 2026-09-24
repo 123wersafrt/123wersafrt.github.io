@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="cream">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>林枺羽 · 一个人，一条内容流水线</title>
+<meta name="description" content="林枺羽的作品集与幕后工作台：Python 教学视频系列、每日 AI 资讯栏目，以及整条内容自动化生产线的搭建方式。">
+<meta property="og:title" content="林枺羽 · 一个人，一条内容流水线">
+<meta property="og:description" content="选题、脚本、分镜、渲染、配音、发布——整条工序自己搭的作品集。">
+<meta property="og:type" content="website">
+<style>
+  :root {
+    --font: "Noto Sans SC", "Source Han Sans SC", system-ui, "Segoe UI", "Microsoft YaHei", sans-serif;
+    --font-display: "Noto Serif SC", "Source Han Serif SC", "Songti SC", SimSun, serif;
+    --font-mono: "Cascadia Mono", Consolas, "Courier New", monospace;
+    --radius: 14px;
+    --radius-sm: 10px;
+    --ease: cubic-bezier(0.2, 0, 0, 1);
+    --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-5: 20px;
+    --sp-6: 24px; --sp-8: 32px; --sp-12: 48px; --sp-16: 64px; --sp-24: 96px;
+  }
+  /* 三套主题：奶油纸感（默认，暖色编辑感）/ 米白亮暖 / 冷灰夜 */
+  :root[data-theme="cream"] {
+    --bg: #F2EBE0; --panel: #E2D9CB; --line: #DDD3C4;
+    --text: #292420; --sub: #7C7166;
+    --accent: #B85C38; --accent-soft: #EADDCB; --accent-text: #FFF8F0;
+    --shadow: 0 1px 2px rgba(41,36,32,.06), 0 8px 24px rgba(41,36,32,.08);
+    --shadow-hover: 0 2px 4px rgba(41,36,32,.08), 0 14px 36px rgba(41,36,32,.13);
+  }
+  :root[data-theme="paper"] {
+    --bg: #FAF6EF; --panel: #FFFDF8; --line: #E7DCCB;
+    --text: #2B2118; --sub: #877667;
+    --accent: #B85C38; --accent-soft: #F3E7D7; --accent-text: #FFF8F0;
+    --shadow: 0 1px 2px rgba(43,33,24,.05), 0 8px 24px rgba(43,33,24,.07);
+    --shadow-hover: 0 2px 4px rgba(43,33,24,.07), 0 14px 36px rgba(43,33,24,.11);
+  }
+  :root[data-theme="night"] {
+    --bg: #131519; --panel: #191C21; --line: #2C3138;
+    --text: #E8EAED; --sub: #9AA0A6;
+    --accent: #7AA2F7; --accent-soft: #202837; --accent-text: #0D1017;
+    --shadow: 0 1px 2px rgba(0,0,0,.30), 0 8px 24px rgba(0,0,0,.35);
+    --shadow-hover: 0 2px 4px rgba(0,0,0,.35), 0 14px 36px rgba(0,0,0,.45);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.75;
+    font-size: 15px;
+    transition: background .3s var(--ease), color .3s var(--ease);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 var(--sp-6); }
+  h1, h2 { font-family: var(--font-display); font-weight: 600; }
+
+  /* ---------- Nav ---------- */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: saturate(140%) blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner { display: flex; align-items: center; gap: var(--sp-6); height: 60px; }
+  .logo { font-family: var(--font-display); font-size: 18px; font-weight: 600; letter-spacing: .02em; color: var(--text); }
+  .logo:hover { text-decoration: none; }
+  .logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: var(--sp-5); margin-left: auto; }
+  .nav-links a { color: var(--sub); font-size: 14px; }
+  .nav-links a:hover { color: var(--text); text-decoration: none; }
+  .theme-switch {
+    display: flex; gap: var(--sp-1); padding: 3px;
+    border: 1px solid var(--line); border-radius: 999px;
+  }
+  .theme-switch button {
+    font-family: var(--font); font-size: 12px; line-height: 1;
+    padding: 7px 12px; border: none; border-radius: 999px;
+    background: transparent; color: var(--sub); cursor: pointer;
+    transition: background .2s var(--ease), color .2s var(--ease);
+  }
+  .theme-switch button:hover { color: var(--text); }
+  .theme-switch button[aria-pressed="true"] { background: var(--accent); color: var(--accent-text); }
+
+  /* ---------- Hero ---------- */
+  .hero { padding: var(--sp-16) 0 var(--sp-12); }
+  .hero-grid {
+    display: grid; grid-template-columns: 1.05fr .95fr;
+    gap: var(--sp-12); align-items: center;
+  }
+  .badge {
+    display: inline-flex; align-items: center; gap: var(--sp-2);
+    font-size: 13px; color: var(--sub);
+    background: var(--accent-soft); border: 1px solid var(--line);
+    padding: 6px 14px; border-radius: 999px; margin-bottom: var(--sp-6);
+  }
+  .badge i {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent); display: inline-block;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: .45; transform: scale(.8); }
+  }
+  h1 { font-size: clamp(34px, 5vw, 52px); line-height: 1.18; letter-spacing: .01em; margin-bottom: var(--sp-6); }
+  .lead { font-size: clamp(15px, 1.6vw, 17px); color: var(--sub); max-width: 560px; margin-bottom: var(--sp-8); }
+  .hero-actions { display: flex; gap: var(--sp-3); flex-wrap: wrap; margin-bottom: var(--sp-8); }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    height: 44px; padding: 0 var(--sp-6); border-radius: var(--radius-sm);
+    font-size: 15px; font-weight: 500; cursor: pointer;
+    transition: transform .15s var(--ease), filter .15s var(--ease), background .15s var(--ease);
+  }
+  .btn:hover { text-decoration: none; transform: translateY(-1px); filter: brightness(1.06); }
+  .btn:active { transform: translateY(0) scale(.98); }
+  .btn-primary { background: var(--accent); color: var(--accent-text); border: 1px solid var(--accent); }
+  .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--line); }
+  .btn-ghost:hover { background: var(--panel); }
+  .meta-row { display: flex; gap: var(--sp-2); flex-wrap: wrap; }
+  .chip {
+    font-size: 12.5px; color: var(--sub);
+    border: 1px solid var(--line); border-radius: 999px;
+    padding: 4px 12px; background: var(--panel);
+  }
+
+  /* ---------- Cover wall ---------- */
+  .cover-wall { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4); }
+  .cover-card {
+    border-radius: var(--radius-sm); overflow: hidden;
+    border: 1px solid var(--line); background: var(--panel);
+    box-shadow: var(--shadow);
+    transition: transform .25s var(--ease), box-shadow .25s var(--ease);
+  }
+  .cover-card img { display: block; width: 100%; height: 100%; object-fit: cover; aspect-ratio: 16 / 9; }
+  .cover-card:hover { transform: rotate(0deg) translateY(-3px) !important; box-shadow: var(--shadow-hover); }
+  .cover-card:nth-child(1) { transform: rotate(-2deg); animation: float 7s ease-in-out infinite; }
+  .cover-card:nth-child(2) { transform: rotate(1.6deg); animation: float 8s ease-in-out .8s infinite; }
+  .cover-card:nth-child(3) { transform: rotate(1.8deg); animation: float 7.5s ease-in-out .4s infinite; }
+  .cover-card:nth-child(4) { transform: rotate(-1.4deg); animation: float 8.5s ease-in-out 1.2s infinite; }
+  @keyframes float {
+    0%, 100% { translate: 0 0; }
+    50% { translate: 0 -5px; }
+  }
+
+  /* ---------- Log strip ---------- */
+  .log-strip {
+    display: flex; align-items: center; gap: var(--sp-4);
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    background: var(--panel); padding: 11px 0; overflow: hidden;
+  }
+  .log-label {
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: .12em;
+    color: var(--accent); white-space: nowrap; padding-left: var(--sp-6);
+  }
+  .log-track { flex: 1; overflow: hidden; }
+  .log-move {
+    display: inline-flex; white-space: nowrap;
+    font-family: var(--font-mono); font-size: 13px; color: var(--sub);
+    animation: marquee 36s linear infinite;
+    will-change: transform;
+  }
+  .log-move span { margin-right: 44px; }
+  .log-move b { color: var(--text); font-weight: 500; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ---------- Sections ---------- */
+  section { padding: var(--sp-16) 0; scroll-margin-top: 72px; }
+  .sec-head { margin-bottom: var(--sp-8); }
+  .sec-kicker { font-family: var(--font-mono); font-size: 13px; color: var(--accent); letter-spacing: .08em; margin-bottom: var(--sp-2); }
+  h2 { font-size: clamp(22px, 3vw, 30px); line-height: 1.3; margin-bottom: var(--sp-3); }
+  .sec-desc { color: var(--sub); max-width: 640px; }
+
+  /* ---------- Works ---------- */
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--sp-5); }
+  .card {
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: var(--sp-6);
+    box-shadow: var(--shadow);
+    transition: transform .2s var(--ease), box-shadow .2s var(--ease);
+    display: flex; flex-direction: column; gap: var(--sp-3);
+  }
+  .card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+  .card-icon {
+    width: 44px; height: 44px; border-radius: var(--radius-sm);
+    background: var(--accent-soft); display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+  }
+  .card h3 { font-family: var(--font); font-size: 18px; font-weight: 600; line-height: 1.4; }
+  .card h3 a { color: var(--text); }
+  .card p { color: var(--sub); font-size: 14.5px; flex: 1; }
+  .tags { display: flex; gap: var(--sp-2); flex-wrap: wrap; }
+  .tag { font-size: 12px; color: var(--sub); background: var(--accent-soft); border-radius: 6px; padding: 3px 9px; }
+
+  /* ---------- Pipeline ---------- */
+  .pipe-box {
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: var(--sp-6);
+    box-shadow: var(--shadow); overflow-x: auto;
+  }
+  .pipe-box svg { display: block; min-width: 760px; width: 100%; height: auto; }
+  .pipe-note { margin-top: var(--sp-5); color: var(--sub); font-size: 14px; }
+
+  /* ---------- Services ---------- */
+  .svc-list { display: flex; flex-direction: column; gap: var(--sp-3); }
+  .svc {
+    display: flex; align-items: baseline; gap: var(--sp-5);
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: var(--sp-5) var(--sp-6);
+    transition: transform .2s var(--ease), box-shadow .2s var(--ease);
+  }
+  .svc:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+  .svc-main { flex: 1; }
+  .svc h3 { font-family: var(--font); font-size: 16.5px; font-weight: 600; margin-bottom: 2px; }
+  .svc p { color: var(--sub); font-size: 14px; }
+  .svc-price { font-size: 14.5px; font-weight: 600; color: var(--accent); white-space: nowrap; }
+
+  /* ---------- Contact ---------- */
+  .contact-box {
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: var(--sp-12);
+    box-shadow: var(--shadow); text-align: center;
+  }
+  .contact-box h2 { margin-bottom: var(--sp-3); }
+  .contact-box .sec-desc { margin: 0 auto var(--sp-8); }
+  .contact-links { display: flex; gap: var(--sp-3); justify-content: center; flex-wrap: wrap; }
+  .todo-chip {
+    display: inline-block; margin-top: var(--sp-6);
+    font-size: 12px; color: var(--sub);
+    border: 1px dashed var(--line); border-radius: 999px; padding: 4px 12px;
+  }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding: var(--sp-8) 0; text-align: center;
+    color: var(--sub); font-size: 13px;
+  }
+
+  /* ---------- Reveal ---------- */
+  .reveal { opacity: 0; transform: translateY(12px); transition: opacity .5s var(--ease), transform .5s var(--ease); }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .badge i { animation: none; }
+    .cover-card, .cover-card:nth-child(n) { animation: none; }
+    .log-move { animation: none; }
+    html { scroll-behavior: auto; }
+  }
+
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; gap: var(--sp-8); }
+  }
+  @media (max-width: 720px) {
+    .nav-links { display: none; }
+    .hero { padding-top: var(--sp-12); }
+    .svc { flex-direction: column; gap: var(--sp-2); }
+    .contact-box { padding: var(--sp-8) var(--sp-6); }
+    .log-label { padding-left: var(--sp-4); }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="logo" href="#top">林<span>枺</span>羽</a>
+    <nav class="nav-links">
+      <a href="#works">作品集</a>
+      <a href="#pipeline">幕后工作台</a>
+      <a href="#services">接单服务</a>
+      <a href="#contact">联系</a>
+    </nav>
+    <!-- 预览用风格切换器：正式版可保留为暗色切换或移除 -->
+    <div class="theme-switch" role="group" aria-label="配色切换">
+      <button data-set-theme="cream" aria-pressed="true">奶油</button>
+      <button data-set-theme="paper" aria-pressed="false">米白</button>
+      <button data-set-theme="night" aria-pressed="false">夜</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- 1. Hero -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="badge reveal"><i></i>生产线运行中 · 今日 AI 晚报已出</div>
+        <h1 class="reveal">一个人，<br>一条内容流水线。</h1>
+        <p class="lead reveal">我是林枺羽。做「每天 5 分钟从零学 Python」视频系列和每日 AI 资讯栏目——选题、脚本、分镜、渲染、配音、发布，整条工序都是自己搭的自动化管线。没有团队，只有流程。</p>
+        <div class="hero-actions reveal">
+          <a class="btn btn-primary" href="#works">看看做过的 →</a>
+          <a class="btn btn-ghost" href="#contact">聊聊合作</a>
+        </div>
+        <div class="meta-row reveal">
+          <span class="chip">Python 教学创作者</span>
+          <span class="chip">AI 工作流搭建</span>
+          <span class="chip">内容自动化</span>
+        </div>
+      </div>
+      <div class="cover-wall reveal" aria-label="作品画面墙">
+        <figure class="cover-card"><img src="assets/work-python-1.jpg" alt="Python 教学视频画面：input() 讲解"></figure>
+        <figure class="cover-card"><img src="assets/work-python-2.jpg" alt="Python 教学视频画面：让程序反过来问你话"></figure>
+        <figure class="cover-card"><img src="assets/work-news-1.jpg" alt="AI 资讯栏目封面：复古报纸风"></figure>
+        <figure class="cover-card"><img src="assets/work-news-2.jpg" alt="AI 资讯栏目封面：今日 TOP1 橙色版"></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 生产日志 ticker -->
+  <div class="log-strip" aria-label="生产线日志">
+    <div class="log-label">LOG · 生产日志</div>
+    <div class="log-track">
+      <div class="log-move">
+        <span><b>21:00</b> AI 晚报 · Remotion 渲染完成 ✓</span>
+        <span><b>20:41</b> 双声线配音合成 ✓</span>
+        <span><b>20:36</b> Whisper 字幕烧录 ✓</span>
+        <span><b>20:12</b> 封面出图 ✓</span>
+        <span><b>19:55</b> 选题台账去重 ✓</span>
+        <span><b>18:30</b> ep13 · 分镜逐帧审阅中…</span>
+        <span><b>17:04</b> Real-ESRGAN 批量放大 ✓</span>
+        <span><b>16:20</b> 多平台定时发布 ✓</span>
+        <span><b>21:00</b> AI 晚报 · Remotion 渲染完成 ✓</span>
+        <span><b>20:41</b> 双声线配音合成 ✓</span>
+        <span><b>20:36</b> Whisper 字幕烧录 ✓</span>
+        <span><b>20:12</b> 封面出图 ✓</span>
+        <span><b>19:55</b> 选题台账去重 ✓</span>
+        <span><b>18:30</b> ep13 · 分镜逐帧审阅中…</span>
+        <span><b>17:04</b> Real-ESRGAN 批量放大 ✓</span>
+        <span><b>16:20</b> 多平台定时发布 ✓</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. 作品集 -->
+  <section id="works">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="sec-kicker">WORKS</div>
+        <h2>做过的东西</h2>
+        <p class="sec-desc">两条连载内容线，一个开源应用，一整套本地生产工具。</p>
+      </div>
+      <div class="cards">
+        <article class="card reveal">
+          <div class="card-icon">🐍</div>
+          <h3>每天 5 分钟从零学 Python</h3>
+          <p>面向零基础的 Python 语法短视频系列，Remotion 四宫格动画排版 + AI 配音，每集只讲一个知识点。头条号与视频号同步连载中。</p>
+          <div class="tags"><span class="tag">Remotion</span><span class="tag">TTS 配音</span><span class="tag">系列化</span></div>
+        </article>
+        <article class="card reveal">
+          <div class="card-icon">📰</div>
+          <h3>AI 晚报 · 每日资讯栏目</h3>
+          <p>每天 10 条 AI 圈新闻的横屏视频栏目：双声线配音、自动字幕、封面自动出图，傍晚流水线跑完，定时发布。</p>
+          <div class="tags"><span class="tag">双声线 TTS</span><span class="tag">Whisper 字幕</span><span class="tag">自动封面</span></div>
+        </article>
+        <article class="card reveal">
+          <div class="card-icon">🖥</div>
+          <h3><a href="https://github.com/123wersafrt/API-Gateway-Desktop" target="_blank" rel="noopener">API-Gateway-Desktop ↗</a></h3>
+          <p>OpenAI 兼容 API 的本地中转网关桌面应用，Electron + TypeScript，MIT 开源。给模型调用加一层统一入口和路由。</p>
+          <div class="tags"><span class="tag">Electron</span><span class="tag">TypeScript</span><span class="tag">MIT 开源</span></div>
+        </article>
+        <article class="card reveal">
+          <div class="card-icon">🧰</div>
+          <h3>AI 生产线工具箱</h3>
+          <p>图片高清放大、语音合成、视频生成、字幕烧录——内容生产用得到的工序都封装成了可复用的本地流程，全部零服务器。</p>
+          <div class="tags"><span class="tag">Real-ESRGAN</span><span class="tag">ComfyUI</span><span class="tag">自动化</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. 幕后工作台 -->
+  <section id="pipeline">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="sec-kicker">PIPELINE</div>
+        <h2>幕后工作台：一条内容是怎么被造出来的</h2>
+        <p class="sec-desc">每天把素材灌进去，成片和图文从另一头出来。下面是这条流水线的六个工位。</p>
+      </div>
+      <div class="pipe-box reveal">
+        <svg viewBox="0 0 860 130" role="img" aria-label="内容生产线六工位流程图">
+          <defs>
+            <marker id="pa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="var(--sub)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+          </defs>
+          <g font-family="var(--font)">
+            <g>
+              <rect x="20" y="35" width="120" height="60" rx="10" fill="var(--accent-soft)" stroke="var(--line)"/>
+              <text x="80" y="58" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="var(--text)">选题</text>
+              <text x="80" y="78" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="var(--sub)">热榜 + 台账去重</text>
+            </g>
+            <line x1="144" y1="65" x2="156" y2="65" stroke="var(--sub)" stroke-width="1.5" marker-end="url(#pa)"/>
+            <g>
+              <rect x="160" y="35" width="120" height="60" rx="10" fill="var(--accent-soft)" stroke="var(--line)"/>
+              <text x="220" y="58" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="var(--text)">脚本</text>
+              <text x="220" y="78" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="var(--sub)">草稿 + 人工改写</text>
+            </g>
+            <line x1="284" y1="65" x2="296" y2="65" stroke="var(--sub)" stroke-width="1.5" marker-end="url(#pa)"/>
+            <g>
+              <rect x="300" y="35" width="120" height="60" rx="10" fill="var(--accent-soft)" stroke="var(--line)"/>
+              <text x="360" y="58" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="var(--text)">分镜</text>
+              <text x="360" y="78" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="var(--sub)">storyboard 逐镜审</text>
+            </g>
+            <line x1="424" y1="65" x2="436" y2="65" stroke="var(--sub)" stroke-width="1.5" marker-end="url(#pa)"/>
+            <g>
+              <rect x="440" y="35" width="120" height="60" rx="10" fill="var(--accent-soft)" stroke="var(--line)"/>
+              <text x="500" y="58" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="var(--text)">渲染</text>
+              <text x="500" y="78" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="var(--sub)">Remotion 出片</text>
+            </g>
+            <line x1="564" y1="65" x2="576" y2="65" stroke="var(--sub)" stroke-width="1.5" marker-end="url(#pa)"/>
+            <g>
+              <rect x="580" y="35" width="120" height="60" rx="10" fill="var(--accent-soft)" stroke="var(--line)"/>
+              <text x="640" y="58" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="var(--text)">配音</text>
+              <text x="640" y="78" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="var(--sub)">TTS + 自动字幕</text>
+            </g>
+            <line x1="704" y1="65" x2="716" y2="65" stroke="var(--sub)" stroke-width="1.5" marker-end="url(#pa)"/>
+            <g>
+              <rect x="720" y="35" width="120" height="60" rx="10" fill="var(--accent-soft)" stroke="var(--line)"/>
+              <text x="780" y="58" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="var(--text)">发布</text>
+              <text x="780" y="78" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="var(--sub)">多平台定时发</text>
+            </g>
+          </g>
+        </svg>
+      </div>
+      <div class="meta-row reveal" style="margin-top: 20px;">
+        <span class="chip">Remotion</span>
+        <span class="chip">edge-tts / MiniMax</span>
+        <span class="chip">Whisper</span>
+        <span class="chip">Real-ESRGAN</span>
+        <span class="chip">ComfyUI</span>
+        <span class="chip">Playwright</span>
+      </div>
+      <p class="pipe-note reveal">全部工序跑在自己的工作机上，零服务器、零月租。每个环节都做成了脚本，换选题不换流程。</p>
+    </div>
+  </section>
+
+  <!-- 4. 接单服务 -->
+  <section id="services">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="sec-kicker">SERVICES</div>
+        <h2>可以接的活</h2>
+        <p class="sec-desc">流水线上的工序都能单独承接。以下是参考起点价，批量和包月另议。</p>
+      </div>
+      <div class="svc-list">
+        <div class="svc reveal">
+          <div class="svc-main">
+            <h3>图片高清放大（二次元 / 游戏素材）</h3>
+            <p>低清图放大修复到可用尺寸，批量处理，动漫模型调优。</p>
+          </div>
+          <div class="svc-price">¥5–20 / 张起</div>
+        </div>
+        <div class="svc reveal">
+          <div class="svc-main">
+            <h3>短视频脚本代写</h3>
+            <p>口播稿、分镜脚本，按平台调性写，交付含节奏标注。</p>
+          </div>
+          <div class="svc-price">¥80–200 / 条</div>
+        </div>
+        <div class="svc reveal">
+          <div class="svc-main">
+            <h3>封面 / 海报设计</h3>
+            <p>视频封面、活动海报，含文案排版，可出多版对比。</p>
+          </div>
+          <div class="svc-price">¥50–300 / 套</div>
+        </div>
+        <div class="svc reveal">
+          <div class="svc-main">
+            <h3>自动化工作流搭建</h3>
+            <p>内容生产管线的咨询与搭建：TTS、字幕、批处理、定时发布。</p>
+          </div>
+          <div class="svc-price">按需定价</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. 联系 -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact-box reveal">
+        <h2>合作、接单、约稿</h2>
+        <p class="sec-desc">邮件说清楚需求和预算，48 小时内回复。</p>
+        <div class="contact-links">
+          <a class="btn btn-primary" href="mailto:3381098646@qq.com">3381098646@qq.com</a>
+          <a class="btn btn-ghost" href="https://github.com/123wersafrt" target="_blank" rel="noopener">GitHub @123wersafrt ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">© <span id="y">2026</span> 林枺羽 · 单文件静态页 · 托管于 GitHub Pages</div>
+</footer>
+
+<script>
+  (function () {
+    var KEY = "blog-theme";
+    var root = document.documentElement;
+    var saved = localStorage.getItem(KEY) || "cream";
+    if (["cream", "paper", "night"].indexOf(saved) < 0) { saved = "cream"; }
+    root.setAttribute("data-theme", saved);
+    var buttons = document.querySelectorAll("[data-set-theme]");
+    function sync() {
+      var cur = root.getAttribute("data-theme");
+      buttons.forEach(function (b) {
+        b.setAttribute("aria-pressed", String(b.getAttribute("data-set-theme") === cur));
+      });
+    }
+    buttons.forEach(function (b) {
+      b.addEventListener("click", function () {
+        root.setAttribute("data-theme", b.getAttribute("data-set-theme"));
+        localStorage.setItem(KEY, b.getAttribute("data-set-theme"));
+        sync();
+      });
+    });
+    sync();
+
+    document.getElementById("y").textContent = String(new Date().getFullYear());
+
+    if (!window.IntersectionObserver) {
+      document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("in"); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+  })();
+</script>
+
+</body>
+</html>
